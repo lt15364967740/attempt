@@ -1,18 +1,18 @@
 import { Environment, Lightformer } from "@react-three/drei";
 
-export  function Lights() {
+export function Lights() {
   return (
     <>
-     <hemisphereLight
-        intensity={0.5}
+      <hemisphereLight
+        intensity={1}
         args={[0xffffff, 0xffffff, 1.0]}
         color={"#57bcff"}
         position={[0, 50, 0]}
         groundColor={"white"}
       />
       <ambientLight intensity={0.5} />
-      {/* <Environment frames={1}>
-      <Lightformer
+      <Environment frames={1}>
+        <Lightformer
           form="circle"
           rotation-y={Math.PI / 2}
           position={[-5, 3, 4]}
@@ -35,7 +35,8 @@ export  function Lights() {
           intensity={2}
           color="#cdceff"
         />
-      </Environment> */}
+      </Environment>
     </>
   );
 }
+export default Lights;

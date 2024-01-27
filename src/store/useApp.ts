@@ -1,5 +1,6 @@
-import {create} from 'zustand';
+import { create } from "zustand";
+
 export const useApp = create(() => ({
-    loaded: false,
-    started: false,
-}))
+  loaded: false,
+  started: false,
+}));

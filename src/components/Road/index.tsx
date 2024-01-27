@@ -1,7 +1,7 @@
 import { useTexture } from "@react-three/drei";
 import { RepeatWrapping } from "three";
 
-export function Floor() {
+export default function Floor() {
   const size = 30;
   const textureRepeat = 30 / 2 / 2;
   const tex = useTexture(

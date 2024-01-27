@@ -1,6 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import { isDesktop } from "react-device-detect";
-import { useApp } from "../../useApp";
+import { useApp } from "@/store/useApp";
 import { Title } from "./Title";
 import { InnerContainer, StartScreenContainer, StyledH4 } from "./styled";
 

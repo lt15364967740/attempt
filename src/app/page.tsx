@@ -1,28 +1,68 @@
 "use client";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useApp } from "@/store/useApp";
-import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
-import { Post } from "@/component/post";
-import { Lights } from "@/component/lights";
-import { Loader } from "@/component/loader";
-import { Floor } from "@/component/Road/index";
-import { Rain } from "@/component/Rain/index";
-export default function Home() {
-  const loaded = useApp((s) => s.loaded);
+import { Loader } from "@/components/Loader";
+import { Post } from "@/components/post";
+// import { Clouds } from "./components/Cloud";
+// import { Grass } from "./components/Grass";
+import Lights from "@/components/lights";
+// import { Rail } from "./components/Rail";
+// import { Rain } from "./components/Rain";
+import Road from "@/components/Road";
+// import { Rocks } from "./components/Rocks";
+// import { Sign } from "./components/Sign";
+import { MainScreen } from "@/components/ui/MainScreen";
+import { StartScreen } from "@/components/ui/StartScreen";
+import { useApp } from "@/store/useApp";
+import Car from "@/components/model/car/car";
+
+function Thing() {
   return (
-    <Canvas
-      shadows
-      style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease-in" }}
-    >
-      <Suspense>
-        <color attach="background" args={["#111111"]} />
-        <OrbitControls />
-        <Rain />
-        <Floor />
-        <Lights />
-        <Loader />
-      </Suspense>
-    </Canvas>
+    <group>
+      <Car></Car>
+      {/* <Rain> */}
+      <Road />
+      {/* </Rain> */}
+      {/* <Grass />
+      <Rail />
+      <Bicycle />
+      <Sign />
+      <Rocks />
+      <Clouds /> */}
+    </group>
+  );
+}
+
+export default function App() {
+  const loaded = useApp((s) => s.loaded);
+
+  return (
+    <>
+      <StartScreen />
+      <MainScreen />
+      <Canvas
+        shadows
+        style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease-in" }}
+      >
+        <Suspense>
+          <color attach="background" args={["#fff"]} />
+
+          <OrbitControls
+            makeDefault
+            target={[0, 1, 0]}
+            maxPolarAngle={Math.PI / 2}
+            dampingFactor={0.05}
+          />
+          <PerspectiveCamera position={[4.94, 2.42, -1.88]} makeDefault />
+
+          <Lights />
+          <Post />
+          <Thing />
+
+          <Loader />
+        </Suspense>
+      </Canvas>
+    </>
   );
 }

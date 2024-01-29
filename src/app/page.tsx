@@ -46,7 +46,7 @@ export default function App() {
         style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease-in" }}
       >
         <Suspense>
-          <color attach="background" args={["#fff"]} />
+          <color attach="background" args={["#15151a"]} />
 
           <OrbitControls
             makeDefault

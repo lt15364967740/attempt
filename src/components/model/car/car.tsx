@@ -9,7 +9,18 @@ import { GLTFResult } from "./types";
 
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("./model/car.glb") as GLTFResult;
-  materials["BackLighs"].envMapIntensity = 0.5;
+  React.useMemo(() => {
+    if (nodes.Object_16) {
+      nodes.Object_16.geometry.computeVertexNormals();
+      materials.Windows.metalness = 0;
+      materials.Windows.roughness = 0;
+      materials.Windows.color = new THREE.Color("#000");
+    }
+    materials.BodyPaint.metalness = 1;
+    materials.BodyPaint.roughness = 0.75;
+    materials.GreyBlack.metalness = 1;
+    materials.GreyBlack.roughness = 0.75;
+  }, [nodes, materials]);
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
